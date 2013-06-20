@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?php echo __('Credits'); ?></title>
+        <title><?php echo __('Functional Dpendencies - Credits'); ?></title>
         <script type="text/javascript" src="/<?php echo $app->config('base'); ?>/Assets/Js/jquery.min.js"></script>
         <script type="text/javascript" src="/<?php echo $app->config('base'); ?>/Assets/Js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -50,10 +50,11 @@
                 </div>
                 <div class="span10">
                     <div class="page-header">
-                        <h1><?php echo __('Credits'); ?></h1>
+                        <h1><?php echo __('Functional Dependencies'); ?></h1>
                     </div>
                     
                     <ul class="nav nav-pills">
+                        <li><a href="/<?php echo $app->config('base') . $app->router()->urlFor('theory'); ?>" class="transition"><?php echo __('Theory'); ?></a></li>
                         <li><a href="/<?php echo $app->config('base') . $app->router()->urlFor('demo'); ?>" class="transition"><?php echo __('Demo'); ?></a></li>
                         <li class="active"><a href="#"><?php echo __('Credits'); ?></a></li>
                     </ul>

@@ -51,14 +51,14 @@ if (!function_exists('__')) {
  */
 
 $app->get('/', function() use ($app) {
-    $app->redirect($app->config('base') . $app->router()->urlFor('demo'));
+    $app->redirect('/' . $app->config('base') . $app->router()->urlFor('demo'));
 });
 
 /**
  * Theory.
  */
 $app->get('/theory', function() use ($app) {
-    
+    $app->render('Theory.php', array('app' => $app));
 })->name('theory');
 
 /**
