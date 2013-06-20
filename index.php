@@ -78,11 +78,15 @@ $app->post('/demo', function() use ($app) {
     $schema = new \Libraries\RelationalSchema($attributes);
     
     foreach ($dependencies as $dependency) {
-        $dependency = array_map('trim', explode('->', trim($dependency)));
-        $left = new \Libraries\Set(array_map('trim', explode(',', array_shift($dependency))));
-        $right = new \Libraries\Set(array_map('trim', explode(',', array_pop($dependency))));
-        $functionalDependency = new \Libraries\FunctionalDependency($left, $right);
-        $schema->getFunctionalDependencies()->add($functionalDependency);
+        $dependency = trim($dependency);
+        
+        if (!empty($dependency)) {
+            $dependency = array_map('trim', explode('->', $dependency));
+            $left = new \Libraries\Set(array_map('trim', explode(',', array_shift($dependency))));
+            $right = new \Libraries\Set(array_map('trim', explode(',', array_pop($dependency))));
+            $functionalDependency = new \Libraries\FunctionalDependency($left, $right);
+            $schema->getFunctionalDependencies()->add($functionalDependency);
+        }
     }
     
     $app->render('Demo.php', array('app' => $app, 'schema' => $schema));

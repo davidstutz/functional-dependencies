@@ -64,15 +64,16 @@ class RelationalSchema {
      * @return  array   closure
      */
     public function closure(\Libraries\Set $attributes) {
-        new \Libraries\Assertion($attributes->subsetOf($this->_attributes), 'Attributes do not exist within the relational schema.');
+        new \Libraries\Assertion($attributes->subsetOf($this->getAttributes()), 'Attributes do not exist within the relational schema.');
         
         $changed = TRUE;
         $result = $attributes->copy();
+        
         while (TRUE === $changed) {
             $changed = FALSE;
             $size = $result->size();
             
-            foreach ($this->_functionalDependencies->asArray() as $functionalDependency) {
+            foreach ($this->getFunctionalDependencies()->asArray() as $functionalDependency) {
                 if ($functionalDependency->getLeftAttributes()->subsetOf($result)) {
                     $result->union($functionalDependency->getRightAttributes());
                 }
@@ -92,20 +93,20 @@ class RelationalSchema {
      * @return  object  super keys
      */
     public function superKeys() {
-        $candidates = new \Libraries\Set();
+        $superKeys = new \Libraries\Set();
         
         // Go through all subsets of the attributes.
-        foreach ($this->_attributes->powerSet()->asArray() as $subset) {
+        foreach ($this->getAttributes()->powerSet()->asArray() as $subset) {
             // The subset is of class Set.
             
             // Calculate the closure to see if this is a possible key.
             $closure = $this->closure($subset);
-            if ($this->_attributes->subsetOf($closure)) {
-                $candidates->add($subset);
+            if ($this->getAttributes()->subsetOf($closure)) {
+                $superKeys->add($subset);
             }
         }
         
-        return $candidates;
+        return $superKeys;
     }
     
     /**
@@ -135,28 +136,28 @@ class RelationalSchema {
      * @return  boolean 2NF
      */
     public function secondNormalForm() {
-        foreach ($this->candidateKeys()->asArray() as $candidateKey) {
+        $candidateKeys = $this->candidateKeys();
+        
+        $candidateKeyAttributes = new \Libraries\Set();
+        foreach ($candidateKeys as $candidateKey) {
+            $candidateKeyAttributes->union($candidateKey);
+        }
+        
+        foreach ($candidateKeys as $candidateKey) {
             foreach ($candidateKey->asArray() as $keyAttribute) {
                 $check = $candidateKey->copy()->remove($keyAttribute);
                 $closure = $this->closure($check);
                 
                 foreach ($this->_attributes->asArray() as $attribute) {
-                    if ($closure->contains($attribute)) {
-                        return FALSE;
+                    if (!$candidateKeyAttributes->contains($attribute)) {
+                        if ($closure->contains($attribute)) {
+                            return $attribute;
+                        }
                     }
                 }
             }
         }
         
         return TRUE;
-    }
-    
-    /**
-     * Decompose the schema into (multiple) second normal form schemas.
-     * 
-     * @return  object  set
-     */
-    public function secondNormalFormDecomposition() {
-        
     }
 }

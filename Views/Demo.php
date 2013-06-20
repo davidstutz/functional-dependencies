@@ -75,8 +75,7 @@
 <?php echo $attribute . ':'; ?> <?php echo $schema->closure(new \Libraries\Set(array($attribute))); ?> 
 <?php endforeach; ?>
 <?php echo __('Super Keys:'); ?> <?php echo $schema->superKeys(); ?> 
-<?php echo __('Candidate Keys:'); ?> <?php echo $schema->candidateKeys(); ?> 
-<?php echo __('Second Normal Form:'); ?> <?php echo var_dump($schema->secondNormalForm()); ?>
+<?php echo __('Candidate Keys:'); ?> <?php echo $schema->candidateKeys(); ?>
                         </pre>
                     <?php else: ?>
                         <p class="alert alert-info">
@@ -87,13 +86,13 @@
                         <div class="control-group">
                             <label class="control-label"><?php echo __('Attributes'); ?></label>
                             <div class="controls">
-                                <input type="text" name="attributes" class="span6" />
+                                <input type="text" name="attributes" class="span6" value="<?php echo $app->request()->post('attributes'); ?>" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label"><?php echo __('Functional Dependencies'); ?></label>
                             <div class="controls">
-                                <input type="text" name="dependencies" class="span6" />
+                                <input type="text" name="dependencies" class="span6" value="<?php echo $app->request()->post('dependencies'); ?>" />
                             </div>
                         </div>
                         <div class="form-actions">
