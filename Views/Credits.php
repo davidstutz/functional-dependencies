@@ -73,6 +73,9 @@
                     <p>
                         <ul>
                             <li><a href="http://en.wikipedia.org/wiki/Relation_schema" target="_blank"><?php echo __('Wikipedia: Relation (database)'); ?></a> <span class="muted"><?php echo __(' - visited june 2013'); ?></span></li>
+                            <li><a href="http://en.wikipedia.org/wiki/Functional_dependency" target="_blank"><?php echo __('Wikipedia: Functional Dependency'); ?></a> <span class="muted"><?php echo __(' - visited june 2013'); ?></span></li>
+                            <li><a href="http://en.wikipedia.org/wiki/Superkey" target="_blank"><?php echo __('Wikipedia: Superkey'); ?></a> <span class="muted"><?php echo __(' - visited june 2013'); ?></span></li>
+                            <li><a href="http://en.wikipedia.org/wiki/Candidate_key" target="_blank"><?php echo __('Wikipedia: Candidate Key'); ?></a> <span class="muted"><?php echo __(' - visited june 2013'); ?></span></li>
                             <li><a href="http://csc.lsu.edu/~jianhua/fd_slide2_09.pdf" target="_blank"><?php echo __('Candidate Keys'); ?></a> <span class="muted"><?php echo __(' - visited june 2013'); ?></span></li>
                             <li><?php echo __('Datenbanksysteme: Eine Einf&uuml;hrung, A. Kemper, A. Eickler, 7. Auflage, Oldenbourg Verlag'); ?></li>
                             <li><a href="http://en.wikipedia.org/wiki/Power_set" target="_blank"><?php echo __('Wikipedia: Power Set'); ?></a> <span class="muted"><?php echo __(' - visited june 2013'); ?></span></li>
