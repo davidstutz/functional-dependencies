@@ -76,7 +76,9 @@
 <?php echo $attribute . ':'; ?> <?php echo $schema->closure(new \Libraries\Set(array($attribute))); ?> 
 <?php endforeach; ?>
 <?php echo __('Super Keys:'); ?> <?php echo $schema->superKeys(); ?> 
-<?php echo __('Candidate Keys:'); ?> <?php echo $schema->candidateKeys(); ?>
+<?php echo __('Candidate Keys:'); ?> <?php echo $schema->candidateKeys(); ?> 
+<?php echo __('In 2NF:'); ?> <?php var_dump($schema->secondNormalForm()); ?>
+<?php echo __('In 3NF:'); ?> <?php var_dump($schema->thirdNormalForm()); ?>
                         </pre>
                     <?php else: ?>
                         <p class="alert alert-info">

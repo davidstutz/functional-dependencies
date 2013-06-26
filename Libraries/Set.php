@@ -24,7 +24,7 @@ class Set {
         if (is_array($data)) {
             // Ignore keys.
             foreach ($data as $value) {
-                if (FALSE === array_search($value, $this->asArray())) {
+                if (FALSE === $this->contains($value)) {
                     $this->_data[] = $value;
                 }
             }
@@ -53,7 +53,18 @@ class Set {
      * @return  boolean contained
      */
     public function contains($searched) {
-        return FALSE !== array_search($searched, $this->asArray());
+        if (is_object($searched)) {
+            foreach ($this->asArray() as $key => $value) {
+                if ($searched->equals($value)) {
+                    return TRUE;
+                }
+            }
+            
+            return FALSE;
+        }
+        else {
+            return FALSE !== array_search($searched, $this->asArray());
+        }
     }
     
     /**
@@ -64,10 +75,18 @@ class Set {
      */
     public function remove($searched) {
         
-        if (FALSE !== ($key = array_search($searched, $this->asArray()))) {
-            unset($this->_data[$key]);
+        if (is_object($searched)) {
+            foreach ($this->asArray() as $key => $value) {
+                if ($searched->equals($value)) {
+                    unset($this->_data[$key]);
+                }
+            }
         }
-        
+        else {
+            if (FALSE !== ($key = array_search($searched, $this->asArray()))) {
+                unset($this->_data[$key]);
+            }
+        }
         return $this;
     }
     
@@ -96,7 +115,7 @@ class Set {
      */
     public function add($value) {
         // Keep set properties.
-        if (FALSE === array_search($value, $this->asArray())) {
+        if (FALSE === $this->contains($value)) {
             $this->_data[] = $value;
         }
     }
@@ -109,7 +128,7 @@ class Set {
      */
     public function union($set) {
         foreach ($set->asArray() as $value) {
-            if (FALSE === array_search($value, $this->asArray())) {
+            if (FALSE === $this->contains($value)) {
                 $this->add($value);
             }
         }

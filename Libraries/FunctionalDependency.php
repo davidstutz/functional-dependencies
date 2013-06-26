@@ -51,6 +51,25 @@ class FunctionalDependency {
     }
     
     /**
+     * Check whether this functionalDependency equals another.
+     * 
+     * @return boolean equals
+     */
+    public function equals($functionalDependency) {
+        new \Libraries\Assertion($functionalDependency instanceof \Libraries\FunctionalDependency, 'Tried to compare functional dependeny with object not instance of FunctionalDependency.');
+    
+        if (!$this->getRightAttributes()->equals($functionalDependency->getRightAttributes())) {
+            return FALSE;
+        }
+        
+        if (!$this->getLeftAttributes()->equals($functionalDependency->getLeftAttributes())) {
+            return FALSE;
+        }
+        
+        return TRUE;
+    }
+    
+    /**
      * toString.
      * 
      * @return  string
