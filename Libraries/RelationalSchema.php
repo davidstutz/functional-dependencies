@@ -21,14 +21,9 @@ class RelationalSchema {
     private $_functionalDependencies = NULL;
     
     /**
-     * @var object  cache for super keys
+     * @var array cache for candidate and super keys
      */
-    private $_superKeys = NULL;
-    
-    /**
-     * @var object  cache for candidate keys.
-     */
-    private $_candidateKeys = NULL;
+    private $_cache = array();
     
     /**
      * Constructor. Create a new relational schema by an array of attributes
@@ -112,7 +107,7 @@ class RelationalSchema {
      * @return  object  super keys
      */
     public function superKeys() {
-        if ($this->_superKeys === NULL) {
+        if (!isset($this->_cache['superKeys'])) {
             $superKeys = new \Libraries\Set();
 
             // Go through all subsets of the attributes.
@@ -126,10 +121,10 @@ class RelationalSchema {
                 }
             }
             
-            $this->_superKeys = $superKeys;
+            $this->_cache['superKeys'] = $superKeys;
         }
         
-        return $this->_superKeys;
+        return $this->_cache['superKeys'];
     }
     
     /**
@@ -138,7 +133,7 @@ class RelationalSchema {
      * @return  object  candidate keys
      */
     public function candidateKeys() {
-        if ($this->_candidateKeys === NULL) {
+        if (!isset($this->_cache['candidateKeys'])) {
             $superKeys = $this->superKeys()->asArray();
 
             foreach ($superKeys as $key) {
@@ -151,10 +146,17 @@ class RelationalSchema {
                 }
             }
             
-            $this->_candidateKeys = new \Libraries\Set($superKeys);
+            $this->_cache['candidateKeys'] = new \Libraries\Set($superKeys);
         }
         
-        return $this->_candidateKeys;
+        return $this->_cache['candidateKeys'];
+    }
+    
+    /**
+     * Clear the cache used for super and candidate keys.
+     */
+    public function clearCache() {
+        $this->_cache = array();
     }
     
     /**
@@ -272,29 +274,10 @@ class RelationalSchema {
     }
     
     /**
-     * Right side reduction of the given functional dependency.
+     * Calculate the base of the schema.
+     * The base is calculated by right and left reduction of all dependencies and removing redundant ones.
      * 
-     * @param   object  functional dependency
-     */
-    public function rightSideReduction($functionalDependency) {
-        foreach ($functionalDependency->getLeftAttributes()->asArray() as $attribute) {
-            if ($functionalDependency->getRightAttributes()->subsetOf($this->closure($functionalDependency->getLeftAttributes()->copy()->remove($attribute)))) {
-                $functionalDependency->getLeftAttributes()->remove($attribute);
-            }
-        }
-    }
-    
-    /**
-     * Left side reduction for the given functional dependency.
-     * 
-     * @param   object  functional dependency
-     */
-    public function leftSideReduction($functionalDependency) {
-        // TODO
-    }
-    
-    /**
-     * Calculate the base fo the schema.
+     * @return  object  base of functional dependencies
      */
     public function base() {
         $functionalDependencies = new \Libraries\Set();
@@ -330,6 +313,36 @@ class RelationalSchema {
                     $this->getFunctionalDependencies()->remove($functionalDependency);
                 }
             }
+        }
+        
+        return $functionalDependencies;
+    }
+    
+    /**
+     * Get any relational scheme into third normal form.
+     */
+    public function thirdNormalFormSynthesis() {
+        // We will return a se of new relational schemes.
+        $schemes = new \Libraries\Set();
+        
+        // Get a base of the current scheme.
+        $base = $this->base();
+        
+        foreach ($base->asArray() as $functionalDependency) {
+            $attributes = new \Libraries\Set();
+            $attributes->union($functionalDependency->getLeftAttributes());
+            foreach ($base->asArray() as $additionalAttributes) {
+                if ($additionalAttributes->getLeftAttributes()->equals($functionalDependency->getLeftAttributes())) {
+                    $attributes->union($additionalAttributes->getRightAttributes());
+                }
+            }
+            
+            // Create the new scheme.
+            $scheme = new \Libraries\RelationalSchema($attributes);
+            
+            // Now get all dependencies for this new scheme.
+            $functionalDependencies = new \Libraries\Set();
+            
         }
     }
     

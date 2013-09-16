@@ -65,7 +65,7 @@
                 <div class="span2 tile"></div>
                 <div class="span10">
                     <p>
-                        <?php echo __('This section is intended to give a short overview of relational database theory. It is intended to provide the language and background to understand the algorithms used in the demo section.'); ?>
+                        <?php echo __('This section is intended to provide the language and background to understand the algorithms used in the demo section.'); ?>
                     </p>
                     
                     <p>
@@ -125,7 +125,7 @@
                     </p>
                     
                     <p>
-                        <b><?php echo __('Definition.'); ?></b> <?php echo __('A super key $K \subseteq \mathcal{R}$ is a set of attributes such that holds that every attribute $A \in \mathcal{R}$ is functional dependant on $K$, or in other words $A \in closure(K) \forall A\in \mathcal{R}$.'); ?>
+                        <b><?php echo __('Definition.'); ?></b> <?php echo __('A super key $K \subseteq \mathcal{R}$ is a set of attributes such that every attribute $A \in \mathcal{R}$ is functional dependant on $K$, or in other words $A \in closure(K) \forall A\in \mathcal{R}$.'); ?>
                     </p>
                     
                     <p>
