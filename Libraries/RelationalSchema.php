@@ -196,8 +196,8 @@ class RelationalSchema {
      * @return  boolean 3NF
      */
     public function thirdNormalForm() {
-        $candidateKeys = $this->candidateKeys();
         $superKeys = $this->superKeys();
+        $candidateKeys = $this->candidateKeys();
         
         // If the schema is not in 2NF its trivial.
         if (TRUE !== ($attribute = $this->secondNormalForm())) {
@@ -212,8 +212,8 @@ class RelationalSchema {
                 $firstCheck = $functionalDependency->getLeftAttributes()->contains($attribute);
                 
                 // B is part of a candidate key.
-                $secondCheck = FALSE;
-                foreach ($candidateKeys as $candidateKey) {
+                $seondCheck = FALSE;
+                foreach ($candidateKeys->asArray() as $candidateKey) {
                     if ($candidateKey->contains($attribute)) {
                         $seondCheck = TRUE;
                         break;
@@ -222,7 +222,7 @@ class RelationalSchema {
                 
                 // X is super key.
                 $thirdCheck = FALSE;
-                foreach ($superKeys as $superKey) {
+                foreach ($superKeys->asArray() as $superKey) {
                     if ($superKey->subsetOf($functionalDependency->getLeftAttributes())) {
                         $thirdCheck = TRUE;
                         break;
@@ -230,7 +230,7 @@ class RelationalSchema {
                 }
                 
                 // Is in 3NF when for each functional dependency X -> B one of the above conditions hold.
-                if (!($firstCheck OR $secondCheck OR $thirdCheck)) {
+                if (!$firstCheck AND !$seondCheck AND !$thirdCheck) {
                     return $attribute;
                 }
             }

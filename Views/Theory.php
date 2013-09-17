@@ -146,6 +146,52 @@
                             </li>
                         </ul>
                     </p>
+                    
+                    <p>
+                        <?php echo __('We can extend the definition of a super key by demanding minimality:'); ?>
+                    </p>
+                    
+                    <p>
+                        <b><?php echo __('Definition.'); ?></b> <?php echo __('A candidate key $K \subseteq \mathcal{R}$ is a minimal super key that is there exist no subset of $K\' \subseteq K$ such that $K\'$ is super key.'); ?>
+                    </p>
+                    
+                    <p>
+                        <?php echo __('Now that we have the basic terminology we can speak about normal forms.'); ?>
+                    </p>
+                    
+                    <p>
+                        <b><?php echo __('Definition.'); ?></b> <?php echo __('A relational scheme is in first normal form if the domains of all attributes are atomic.'); ?>
+                    </p>
+                    
+                    <p>
+                        <b><?php echo __('Remark.'); ?></b> <?php echo __('In our definition of a relational scheme all domains are atomic, thus for us all relational schemes are in first normal form.'); ?>
+                    </p>
+                    
+                    <p>
+                        <?php echo __('An attribute $X$ is set to be fully functional dependant on the set of attributes $A$ if $A \rightarrow X$ and there exists no subset $A\' \subseteq A$ such that $A \rightarrow X$. We will use this new concept for introducing the second normal form.'); ?>
+                    </p>
+                    
+                    <p>
+                        <b><?php echo __('Definition.'); ?></b> <?php echo __('A relational scheme is in second normal form if every non key attribute is fully functional dependant on every candidate keys.'); ?>
+                    </p>
+                    
+                    <p>
+                        <?php echo __('By non key attribute we denote all attributes which are not part of an arbitrary candidate key.'); ?>
+                    </p>
+                    
+                    <p>
+                        <b><?php echo __('Definition.'); ?></b> <?php echo __('A relational scheme is in third normal form if for every functional dependency $A \rightarrow X$ with $A \subseteq \mathcal{R}$ and $X \in \mathcal{R}$ one of the following conditions holds:'); ?>
+                    </p>
+                    
+                    <ul>
+                        <li><?php echo __('The functional dependency is trivial.'); ?></li>
+                        <li><?php echo __('$A$ is a super key.'); ?></li>
+                        <li><?php echo __('$X$ is part of a candidate key.'); ?></li>
+                    </ul>
+                    
+                    <p>
+                        <?php echo __('We can check for both second and third normal form by simply finding a counterexample.'); ?>
+                    </p>
                 </div>
             </div>
         </div>
