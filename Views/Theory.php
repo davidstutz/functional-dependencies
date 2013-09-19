@@ -13,7 +13,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('body').css('display', 'none');
-                $('body').fadeIn(1500);
+                $('body').fadeIn(800);
                 
                 $('a.transition').on('click', function(event) {
                    event.preventDefault();

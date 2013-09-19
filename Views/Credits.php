@@ -13,7 +13,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('body').css('display', 'none');
-                $('body').fadeIn(1500);
+                $('body').fadeIn(800);
                 
                 $('a.transition').on('click', function(event) {
                    event.preventDefault();
@@ -66,6 +66,10 @@
                 <div class="span10">
                     <p>
                         <b><?php echo __('About me.'); ?></b> <?php echo __('Visit my personal website:'); ?> <a href="http://davidstutz.de" target="_blank">davidstutz.de</a>.
+                    </p>
+                    
+                    <p>
+                        <b><?php echo __('Code.'); ?></b> <?php echo __('Visit the project on GitHub:'); ?> <a href="https://github.com/davidstutz/functional-dependencies" target="_blank">davidstutz/functional-dependencies</a>
                     </p>
                     
                     <p><b><?php echo __('Sources.'); ?></b></p>
