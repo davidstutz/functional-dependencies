@@ -6,7 +6,7 @@ This application can be used to get all candidate keys of a given relational dat
 
 The application is licensed under the GPL v3.
 
-Copyright 2013 David Stutz
+Copyright 2013 - 2014 David Stutz
 
 The application is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
