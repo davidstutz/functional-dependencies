@@ -2,7 +2,7 @@
 
 This application can be used to get all candidate keys of a given relational database schema including a set of attributes and a set of functional dependencies.
 
-# License
+## License
 
 The application is licensed under the GPL v3.
 
