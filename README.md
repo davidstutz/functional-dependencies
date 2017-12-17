@@ -2,11 +2,13 @@
 
 This application can be used to get all candidate keys of a given relational database schema including a set of attributes and a set of functional dependencies.
 
+The demonstration application can be found [here](http://davidstutz.de/functional-dependencies/demo) and also includes the theoretical background.
+
 ## License
 
 The application is licensed under the GPL v3.
 
-Copyright 2013 - 2014 David Stutz
+Copyright 2013 - 2017 David Stutz
 
 The application is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
