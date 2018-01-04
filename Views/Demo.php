@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?php echo __('Functional Dpendencies - Demo'); ?></title>
+        <title><?php echo __('PHP Functional Dpendencies - Demo'); ?></title>
+        <meta name="description" content="Algorithms for functional dependencies from relational database theory implemented in PHP.">
+        <meta name="keyword" content="relational database theory,relational database,functional dependencies,dependency,php functional dependencies,php">
+
         <script type="text/javascript" src="/<?php echo $app->config('base'); ?>/Assets/Js/jquery.min.js"></script>
         <script type="text/javascript" src="/<?php echo $app->config('base'); ?>/Assets/Js/bootstrap.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
