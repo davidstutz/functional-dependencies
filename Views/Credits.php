@@ -47,8 +47,10 @@
             <div class="row">
                 <div class="span2">
                     <div  style="padding:11px 19px;">
-                        &copy; 2013 <a href="http://davidstutz.de">David Stutz</a><br>
-                        <a href="http://davidstutz.de/impressum-legal-notice/"><?php echo __('Impressum - Legal Notice'); ?></a>
+                        &copy; 2013 - 2018<br>
+						<a href="http://davidstutz.de">David Stutz</a><br>
+                        <a href="https://davidstutz.de/impressum/">Impressum</a><br>
+						<a href="https://davidstutz.de/datenschutz/">Datenschutz</a>
                     </div>
                 </div>
                 <div class="span10">
