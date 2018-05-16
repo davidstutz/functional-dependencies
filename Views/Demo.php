@@ -48,7 +48,8 @@
                 <div class="span2">
                     <div style="padding:11px 19px;">
                         &copy; 2013 - 2018<br>
-						<a href="http://davidstutz.de">David Stutz</a><br>
+                        <a href="http://davidstutz.de">David Stutz</a><br>
+                        <a href="https://davidstutz.de/donate/">Donate</a><br>
                         <a href="https://davidstutz.de/impressum/">Impressum</a><br>
 						<a href="https://davidstutz.de/datenschutz/">Datenschutz</a>
                     </div>

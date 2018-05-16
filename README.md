@@ -4,6 +4,8 @@ This application can be used to get all candidate keys of a given relational dat
 
 The demonstration application can be found [here](http://davidstutz.de/functional-dependencies/demo) and also includes the theoretical background.
 
+Consider [donating](http://davidstutz.de/donate/) to support development.
+
 ## License
 
 The application is licensed under the GPL v3.
